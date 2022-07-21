@@ -1,0 +1,118 @@
+﻿<Window x:Class="OsuBeatmapDownloader.Scripts.BeatmapInformations"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:OsuBeatmapDownloader.Scripts"
+        mc:Ignorable="d"
+        Closing="Window_Closing"
+        Title="BeatmapInformations" Height="450" Width="800">
+    <Window.Resources>
+
+    </Window.Resources>
+    <Window.Background>
+        <SolidColorBrush Color="#202020"/>
+    </Window.Background>
+    <Grid>
+
+        <TextBlock x:Name="link" Foreground="CadetBlue" TextWrapping="Wrap" Text="TextBlock" Margin="560,323,10,0" RenderTransformOrigin="0.798,0.925" Hyperlink.Click="TextBlock_Click" TextDecorations="Underline" MouseDown="link_MouseDown" Height="20" VerticalAlignment="Top"/>
+        <TextBlock x:Name="BeatmapName" Text="EXAMPLE NAME" Style="{StaticResource BeatmapOsuFileStyle}" VerticalAlignment="Top" TextAlignment="Center" FontSize="30"/>
+
+        <!--CUkkk-->
+        <StackPanel Orientation="Horizontal" Margin="0,45,0,0" Height="29" VerticalAlignment="Top">
+            <TextBlock Text="Common Inf." Foreground="White" FontSize="18"/>
+            <Grid Width="260"/>
+            <TextBlock Text="Diff Inf." FontSize="18" Foreground="White"/>
+            <Grid Width="240"/>
+            <TextBlock Text="Others" FontSize="18" Foreground="White"/>
+        </StackPanel>
+
+        <StackPanel Orientation="Vertical" Margin="0,74,720,0" x:Name="CommonKey">
+
+            <TextBlock Text="Artist"           Style="{StaticResource BeatmapArtistStyle}"  />
+            <TextBlock Text="Title"            Style="{StaticResource BeatmapOsuFileStyle}" />
+            <TextBlock Text="Creator"          Style="{StaticResource BeatmapCreatorStyle}" />
+            <TextBlock Text="Diff name"        Style="{StaticResource BeamapDiffStyle}"     />
+            <TextBlock Text="Ranked Status"    />
+            <TextBlock Text="Approved Date"    />
+            <TextBlock Text="Genre"            />
+            <TextBlock Text="Language"         />
+            <TextBlock Text="Play count"       />
+            <TextBlock Text="Pass count"       />
+            <TextBlock Text="Max Combo"        />
+        </StackPanel>
+
+        <StackPanel Margin="85,74,0,-1" HorizontalAlignment="Left" Width="167">
+            <TextBlock x:Name="Artist"       Style="{StaticResource BeatmapArtistStyle}"    />
+            <TextBlock x:Name="Title"        Style="{StaticResource BeatmapOsuFileStyle}"   />
+            <TextBlock x:Name="Creator"      Style="{StaticResource BeatmapCreatorStyle}"   />
+            <TextBlock x:Name="DiffName"     Style="{StaticResource BeamapDiffStyle}"       />
+            <TextBlock x:Name="RankedStatus"                                                />
+            <TextBlock x:Name="ApprovedDate"                                                />
+            <TextBlock x:Name="Genre"                                                       />
+            <TextBlock x:Name="Language"                                                    />
+            <TextBlock x:Name="PlayCount"                                                   />
+            <TextBlock x:Name="PassCount"                                                   />
+            <TextBlock x:Name="MaxCombo"                                                    />
+        </StackPanel>
+
+        <StackPanel Margin="274,79,426,0" Orientation="Vertical" x:Name="Diff" Height="355" VerticalAlignment="Top">
+            <TextBlock Text="Difficulty Rating"         />
+            <TextBlock Text="Mode"                      />
+            <TextBlock Text="BPM"                       />
+            <TextBlock Text="AR"                        />
+            <TextBlock Text="OD"                        />
+            <TextBlock Text="CS"                        />
+            <TextBlock Text="HP"                        />
+            <TextBlock Text="Total Length"              />
+            <TextBlock Text="Hit Length"                />
+        </StackPanel>
+
+        <StackPanel Margin="374,79,281,0">
+            <TextBlock x:Name="DifficultyRating" TextWrapping="Wrap"/>
+            <TextBlock x:Name="Mode"             TextWrapping="Wrap"/>
+            <TextBlock x:Name="BPM"              TextWrapping="Wrap"/>
+            <TextBlock x:Name="AR"               TextWrapping="Wrap"/>
+            <TextBlock x:Name="OD"               TextWrapping="Wrap"/>
+            <TextBlock x:Name="CS"               TextWrapping="Wrap"/>
+            <TextBlock x:Name="HP"               TextWrapping="Wrap"/>
+            <TextBlock x:Name="TotalLength"      TextWrapping="Wrap"/>
+            <TextBlock x:Name="HitLength"        TextWrapping="Wrap"/>
+
+        </StackPanel>
+
+        <StackPanel Orientation="Vertical" Name="Others" Margin="560,79,126,0" Height="244" VerticalAlignment="Top">
+
+            <TextBlock Text="Set ID"             />
+            <TextBlock Text="Last Update"        />
+            <TextBlock Text="Last Checked"       />
+            <TextBlock Text="Source"             />
+            <TextBlock Text="Has Video"          />
+            <TextBlock Text="Favourites"         />
+            <TextBlock Text="Disabled"           />
+            <TextBlock Text="Beatmap ID"         />
+            <TextBlock Text="Parent Set Id"      />
+            <TextBlock Text="FileMD5"            />
+            <TextBlock Text="Osu File"           />
+            <TextBlock Text="Download Path"      />
+        </StackPanel>
+        <StackPanel Margin="674,79,0,0" Height="239" VerticalAlignment="Top">
+
+            <TextBlock x:Name="SetId"           />
+            <TextBlock x:Name="LastUpdate"      />
+            <TextBlock x:Name="LastChecked"     />
+            <TextBlock x:Name="Source"          />
+            <TextBlock x:Name="HasVideo"        />
+            <TextBlock x:Name="Favourites"      />
+            <TextBlock x:Name="Disabled"        />
+            <TextBlock x:Name="BeatmapID"       />
+            <TextBlock x:Name="ParentSetId"     />
+            <TextBlock x:Name="FileMD5"         />
+            <TextBlock x:Name="OsuFile"         />
+            <TextBlock x:Name="DownloadPath"    />
+
+        </StackPanel>
+
+        <!--Remember... Put URL to Chimu and Osu-->
+    </Grid>
+</Window>
