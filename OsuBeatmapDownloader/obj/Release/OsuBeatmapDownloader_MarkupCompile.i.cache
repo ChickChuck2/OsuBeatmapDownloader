@@ -4,17 +4,17 @@
 winexe
 C#
 .cs
-C:\Users\namor\source\repos\OsuBeatmapDownloader\OsuBeatmapDownloader\obj\Release\
+D:\namor\source\repos\OsuBeatmapDownloader\OsuBeatmapDownloader\obj\Release\
 OsuBeatmapDownloader
 none
 false
 TRACE
-C:\Users\namor\source\repos\OsuBeatmapDownloader\OsuBeatmapDownloader\App.xaml
+D:\namor\source\repos\OsuBeatmapDownloader\OsuBeatmapDownloader\App.xaml
 3-1973686968
 
-13836808263
-15-387204447
+13-1548870485
+15-1625035406
 MainWindow.xaml;Scripts\BeatmapInformations.xaml;Scripts\Styles.xaml;
 
-True
+False
 

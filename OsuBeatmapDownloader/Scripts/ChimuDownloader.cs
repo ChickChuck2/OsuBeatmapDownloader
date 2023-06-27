@@ -36,85 +36,100 @@ namespace OsuBeatmapDownloader.Scripts
                         }
                         if (canDownloadOther)
                         {
-                            JToken confi = json["data"][next];
-                            JToken childrenBeatmaps = confi["ChildrenBeatmaps"][0];
+                            //caso eu esquecer [ = Array ; { = Object   ;   
+                            Console.WriteLine(next);
+
+                            JArray data = (JArray)json["data"];
+                            Console.WriteLine(data);
+                            JObject mapData = (JObject)data[next];
+
+                            JArray childrenBeatmaps = (JArray)mapData["ChildrenBeatmaps"];
+
                             //Data
                             GetBeatmap getBeatmap = new GetBeatmap();
 
-                            JToken SetId = confi["SetId"];
+                            JToken SetId = mapData["SetId"];
                             getBeatmap.SetID = (int)SetId;
-                            JToken RankedStatus = confi["RankedStatus"];
+                            JToken RankedStatus = mapData["RankedStatus"];
                             getBeatmap.RankedStatus = (int)RankedStatus;
-                            JToken ApprovedDate = confi["ApprovedDate"];
+                            JToken ApprovedDate = mapData["ApprovedDate"];
                             getBeatmap.ApprovedDate = (string)ApprovedDate;
-                            JToken LastUpdate = confi["LastUpdate"];
+                            JToken LastUpdate = mapData["LastUpdate"];
                             getBeatmap.LastUpdate = (string)LastUpdate;
-                            JToken LastChecked = confi["LastChecked"];
+                            JToken LastChecked = mapData["LastChecked"];
                             getBeatmap.LastChecked = (string)LastChecked;
-                            JToken Artist = confi["Artist"];
+                            JToken Artist = mapData["Artist"];
                             getBeatmap.Artist = (string)Artist;
-                            JToken Title = confi["Title"];
+                            JToken Title = mapData["Title"];
                             getBeatmap.Title = (string)Title;
-                            JToken Creator = confi["Creator"];
+                            JToken Creator = mapData["Creator"];
                             getBeatmap.Creator = (string)Creator;
-                            JToken Source = confi["Source"];
+                            JToken Source = mapData["Source"];
                             getBeatmap.Source = (string)Source;
-                            JToken Tags = confi["Tags"];
+                            JToken Tags = mapData["Tags"];
                             getBeatmap.Tags = (string)Tags;
-                            JToken HasVideo = confi["HasVideo"];
+                            JToken HasVideo = mapData["HasVideo"];
                             getBeatmap.HasVideo = (bool)HasVideo;
-                            JToken Genre = confi["Genre"];
+                            JToken Genre = mapData["Genre"];
                             getBeatmap.Genre = (int)Genre;
-                            JToken Language = confi["Language"];
+                            JToken Language = mapData["Language"];
                             getBeatmap.Language = (int)Language;
-                            JToken Favourites = confi["Favourites"];
+                            JToken Favourites = mapData["Favourites"];
                             getBeatmap.Favourites = (int)Favourites;
-                            JToken Disabled = confi["Disabled"];
+                            JToken Disabled = mapData["Disabled"];
                             getBeatmap.Disabled = (int)Disabled;
 
                             //Children
-                            JToken BeatmapId = childrenBeatmaps["BeatmapId"];
-                            getBeatmap.BeatmapId = (int)BeatmapId;
-                            JToken ParentSetId = childrenBeatmaps["ParentSetId"];
-                            getBeatmap.ParentSetId = (int)ParentSetId;
-                            JToken DiffName = childrenBeatmaps["DiffName"];
-                            getBeatmap.DiffName = (string)DiffName;
-                            JToken FileMD5 = childrenBeatmaps["FileMD5"];
-                            getBeatmap.FileMD5 = (string)FileMD5;
-                            JToken Mode = childrenBeatmaps["Mode"];
-                            getBeatmap.Mode = (int)Mode;
-                            JToken BPM = childrenBeatmaps["BPM"];
-                            getBeatmap.BPM = (int)BPM;
-                            JToken AR = childrenBeatmaps["AR"];
-                            getBeatmap.AR = (float)AR;
-                            JToken OD = childrenBeatmaps["OD"];
-                            getBeatmap.OD = (float)OD;
-                            JToken CS = childrenBeatmaps["CS"];
-                            getBeatmap.CS = (float)CS;
-                            JToken HP = childrenBeatmaps["HP"];
-                            getBeatmap.HP = (float)HP;
-                            JToken TotalLength = childrenBeatmaps["TotalLength"];
-                            getBeatmap.TotalLength = (int)TotalLength;
-                            JToken HitLength = childrenBeatmaps["HitLength"];
-                            getBeatmap.HitLength = (int)HitLength;
-                            JToken Playcount = childrenBeatmaps["Playcount"];
-                            getBeatmap.Playcount = (int)Playcount;
-                            JToken Passcount = childrenBeatmaps["Passcount"];
-                            getBeatmap.Passcount = (int)Passcount;
-                            JToken MaxCombo = childrenBeatmaps["MaxCombo"];
-                            getBeatmap.MaxCombo = (int)MaxCombo;
-                            JToken DifficultyRating = childrenBeatmaps["DifficultyRating"];
-                            getBeatmap.DifficultyRating = (double)DifficultyRating;
-                            JToken OsuFile = childrenBeatmaps["OsuFile"];
-                            getBeatmap.OsuFile = (string)OsuFile;
-                            JToken DownloadPath = childrenBeatmaps["DownloadPath"];
-                            getBeatmap.DownloadPath = (string)DownloadPath;
+                            bool containsChildren = childrenBeatmaps.Count > 0;
 
-                            bool ContainsInList = ConfigManager.GetBeatmaps().Contains((int)childrenBeatmaps["ParentSetId"]);
-                            Console.WriteLine(Url);
-                            if (!ContainsInList)
+                            JToken BeatmapId = (containsChildren) ? childrenBeatmaps[0]["BeatmapId"] : null;
+                            JToken ParentSetId = (containsChildren) ? childrenBeatmaps[0]["ParentSetId"] : null;
+                            JToken DiffName = (containsChildren) ? childrenBeatmaps[0]["DiffName"] : null;
+                            JToken FileMD5 = (containsChildren) ? childrenBeatmaps[0]["FileMD5"] : null;
+                            JToken Mode = (containsChildren) ? childrenBeatmaps[0]["Mode"] : null;
+                            JToken BPM = (containsChildren) ? childrenBeatmaps[0]["BPM"] : null;
+                            JToken AR = (containsChildren) ? childrenBeatmaps[0]["AR"] : null;
+                            JToken OD = (containsChildren) ? childrenBeatmaps[0]["OD"] : null;
+                            JToken CS = (containsChildren) ? childrenBeatmaps[0]["CS"] : null;
+                            JToken HP = (containsChildren) ? childrenBeatmaps[0]["HP"] : null;
+                            JToken TotalLength = (containsChildren) ? childrenBeatmaps[0]["TotalLength"] : null;
+                            JToken HitLength = (containsChildren) ? childrenBeatmaps[0]["HitLength"] : null;
+                            JToken Playcount = (containsChildren) ? childrenBeatmaps[0]["Playcount"] : null;
+                            JToken Passcount = (containsChildren) ? childrenBeatmaps[0]["Passcount"] : null;
+                            JToken MaxCombo = (containsChildren) ? childrenBeatmaps[0]["MaxCombo"] : null;
+                            JToken DifficultyRating = (containsChildren) ? childrenBeatmaps[0]["DifficultyRating"] : null;
+                            JToken OsuFile = (containsChildren) ? childrenBeatmaps[0]["OsuFile"] : null;
+                            JToken DownloadPath = (containsChildren) ? childrenBeatmaps[0]["DownloadPath"] : null;
+
+                            if (childrenBeatmaps.Count > 0)
                             {
-                                string DownloadURL = $"https://api.chimu.moe/v1/d/{ParentSetId}";
+                                getBeatmap.BeatmapId = (int)BeatmapId;
+                                getBeatmap.ParentSetId = (int)ParentSetId;
+                                getBeatmap.DiffName = (string)DiffName;
+                                getBeatmap.FileMD5 = (string)FileMD5;
+                                getBeatmap.Mode = (int)Mode;
+                                getBeatmap.BPM = (int)BPM;
+                                getBeatmap.AR = (float)AR;
+                                getBeatmap.OD = (float)OD;
+                                getBeatmap.CS = (float)CS;
+                                getBeatmap.HP = (float)HP;
+                                getBeatmap.TotalLength = (int)TotalLength;
+                                getBeatmap.HitLength = (int)HitLength;
+                                getBeatmap.Playcount = (int)Playcount;
+                                getBeatmap.Passcount = (int)Passcount;
+                                getBeatmap.MaxCombo = (int)MaxCombo;
+                                getBeatmap.DifficultyRating = (double)DifficultyRating;
+                                getBeatmap.OsuFile = (string)OsuFile;
+                                getBeatmap.DownloadPath = (string)DownloadPath;
+                            }
+
+                            bool ContainsChildInList = containsChildren && ConfigManager.GetBeatmaps().Contains((int)childrenBeatmaps[0]["ParentSetId"]);
+                            bool containsBeamap = ConfigManager.GetBeatmaps().Contains((int)SetId);
+                            Console.WriteLine(Url);
+                            if (containsBeamap || containsChildren && !ContainsChildInList)
+                            {
+                                JToken wdownload = (!containsBeamap) ? SetId : ParentSetId;
+                                string DownloadURL = $"https://api.chimu.moe/v1/d/{wdownload}";
                                 HttpStatusCode code = MainWindow.GetRequestCode($"https://api.chimu.moe/{DownloadPath}");
                                 main.Dispatcher.Invoke(() =>
                                 {
@@ -133,12 +148,15 @@ namespace OsuBeatmapDownloader.Scripts
 
                                             FileInfo fileinfo = new FileInfo($@"{TEMP}\{fileName}");
 
+                                            if(!Directory.Exists(main.PathBox.Text))
+                                                Directory.CreateDirectory(main.PathBox.Text);
+
                                             if (!File.Exists($@"{main.PathBox.Text}\{fileName}"))
                                                 if (fileinfo.Length > 0)
                                                     try
                                                     {
                                                         File.Move($@"{TEMP}\{fileName}", $@"{main.PathBox.Text}\{fileName}");
-                                                        BeatmapInfo.CreateBeatmapInformation(main,getBeatmap);
+                                                        BeatmapInfo.CreateBeatmapInformation(main, getBeatmap);
                                                         ConfigManager.SaveParentSetId((int)ParentSetId);
                                                     }
                                                     catch { }
@@ -170,7 +188,7 @@ namespace OsuBeatmapDownloader.Scripts
                             }
                         }
                     }
-                });
+                })
             }
             if (Downloading == false)
             {
